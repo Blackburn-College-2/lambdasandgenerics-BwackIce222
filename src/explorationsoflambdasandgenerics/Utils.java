@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- *
+ *most if all of the description are what was provided
  * @author Paul
  */
 public class Utils {
@@ -19,6 +19,13 @@ public class Utils {
     should take 2 parameters, (1) an instance of any type and (2) an int of the
     number of times to repeat said element in an arraylist.
      */
+    public static <U>ArrayList<U> repeat(U x, int counter){
+        ArrayList<U>  ls= new ArrayList();
+        for(int i =0; i<counter;i++){
+           ls.add(x);
+        }
+        return ls;
+    }
    
 
     /*
@@ -26,6 +33,16 @@ public class Utils {
     and RETURNS a two line string where the first line is the index of each
     element.
      */
+    public static <U> String indexedOutput(ArrayList<U> a){
+        String index = "";
+        String inside = "";
+        for(int i = 0;i<a.size();i++){
+            index += (0+i)+"\t";
+            inside += a.get(i)+"\t";
+        }
+        return (index +"\n"+ inside);
+    }
+    
    
 
     /*
@@ -45,6 +62,23 @@ public class Utils {
     Here is one you can use:
          assert modifyIntegerXTimes(x -> x + 1, 5, -1) == 4 : "+1 modify test failed";
      */
+    public static Integer modifyIntegerXTimes(IntegerModifier modify,int counter,Integer x){
+        
+        Integer modified = modify.modify(x);
+         
+        for(int i =0; i<counter-1;i++){
+        modified = modify.modify(modified);
+        }
+        return modified;
+        
+    }
+    public static void modifyIntegerXTimesTester(){
+         assert modifyIntegerXTimes(x -> x + 1, 5, -1) == 4 : "+1 modify test failed";
+         assert modifyIntegerXTimes(x -> x-4, 8,-1) == -33: "-4 modify test failed";
+         assert modifyIntegerXTimes(x -> x+2, 0, 4) == 6: "+2 modify test failed";
+         assert modifyIntegerXTimes(x -> x*2, 8, 3) == 768: "*2 modify test failed";
+         assert modifyIntegerXTimes(x -> x*7, 4, -2) == -4802: "*7 modify test failed";
+    }
   
 
     /*
@@ -78,7 +112,14 @@ public class Utils {
     Hint 2: You will need to create an interface for each arguement in
     checkInvolutence.
      */
-   
+public static Integer checkInvolutence(FancyMath f,int x){
+    Integer fancy = f.involutence(x);
+    return fancy;  
+}
+
+
+
+
 
   
 
